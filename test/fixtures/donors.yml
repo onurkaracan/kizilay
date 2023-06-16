@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  donor_name: MyString
+  blood_type: one
+  city: one
+  town: one
+  phone_number: MyString
+  photo: MyString
+  branch: one
+
+two:
+  donor_name: MyString
+  blood_type: two
+  city: two
+  town: two
+  phone_number: MyString
+  photo: MyString
+  branch: two

@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Blood types</h1>
+
+<div id="blood_types">
+  <% @blood_types.each do |blood_type| %>
+    <%= render blood_type %>
+    <p>
+      <%= link_to "Show this blood type", blood_type %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New blood type", new_blood_type_path %>

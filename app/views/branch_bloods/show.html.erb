@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @branch_blood %>
+
+<div>
+  <%= link_to "Edit this branch blood", edit_branch_blood_path(@branch_blood) %> |
+  <%= link_to "Back to branch bloods", branch_bloods_path %>
+
+  <%= button_to "Destroy this branch blood", @branch_blood, method: :delete %>
+</div>

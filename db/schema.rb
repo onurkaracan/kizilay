@@ -10,11 +10,51 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_15_143359) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_15_190853) do
+  create_table "blood_types", force: :cascade do |t|
+    t.string "type_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "branch_bloods", force: :cascade do |t|
+    t.integer "number_of_unit"
+    t.integer "branch_id", null: false
+    t.integer "city_id", null: false
+    t.integer "blood_type_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["blood_type_id"], name: "index_branch_bloods_on_blood_type_id"
+    t.index ["branch_id"], name: "index_branch_bloods_on_branch_id"
+    t.index ["city_id"], name: "index_branch_bloods_on_city_id"
+  end
+
+  create_table "branches", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "cities", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "donors", force: :cascade do |t|
+    t.string "donor_name"
+    t.integer "blood_type_id", null: false
+    t.integer "city_id", null: false
+    t.integer "town_id", null: false
+    t.string "phone_number"
+    t.string "photo"
+    t.integer "branch_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["blood_type_id"], name: "index_donors_on_blood_type_id"
+    t.index ["branch_id"], name: "index_donors_on_branch_id"
+    t.index ["city_id"], name: "index_donors_on_city_id"
+    t.index ["town_id"], name: "index_donors_on_town_id"
   end
 
   create_table "requesters", force: :cascade do |t|
@@ -23,4 +63,62 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_15_143359) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "requests", force: :cascade do |t|
+    t.string "email"
+    t.string "reason"
+    t.integer "requester_id", null: false
+    t.integer "blood_type_id", null: false
+    t.integer "city_id", null: false
+    t.integer "town_id", null: false
+    t.integer "number_of_units"
+    t.integer "duration_of_search"
+    t.integer "branch_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["blood_type_id"], name: "index_requests_on_blood_type_id"
+    t.index ["branch_id"], name: "index_requests_on_branch_id"
+    t.index ["city_id"], name: "index_requests_on_city_id"
+    t.index ["requester_id"], name: "index_requests_on_requester_id"
+    t.index ["town_id"], name: "index_requests_on_town_id"
+  end
+
+  create_table "towns", force: :cascade do |t|
+    t.string "name"
+    t.integer "city_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["city_id"], name: "index_towns_on_city_id"
+  end
+
+  create_table "user_branches", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "branch_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["branch_id"], name: "index_user_branches_on_branch_id"
+    t.index ["user_id"], name: "index_user_branches_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "password"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "branch_bloods", "blood_types"
+  add_foreign_key "branch_bloods", "branches"
+  add_foreign_key "branch_bloods", "cities"
+  add_foreign_key "donors", "blood_types"
+  add_foreign_key "donors", "branches"
+  add_foreign_key "donors", "cities"
+  add_foreign_key "donors", "towns"
+  add_foreign_key "requests", "blood_types"
+  add_foreign_key "requests", "branches"
+  add_foreign_key "requests", "cities"
+  add_foreign_key "requests", "requesters"
+  add_foreign_key "requests", "towns"
+  add_foreign_key "towns", "cities"
+  add_foreign_key "user_branches", "branches"
+  add_foreign_key "user_branches", "users"
 end

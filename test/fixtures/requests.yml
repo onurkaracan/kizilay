@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  email: MyString
+  reason: MyString
+  requester: one
+  blood_type: one
+  city: one
+  town: one
+  number_of_units: 1
+  duration_of_search: 1
+  branch: one
+
+two:
+  email: MyString
+  reason: MyString
+  requester: two
+  blood_type: two
+  city: two
+  town: two
+  number_of_units: 1
+  duration_of_search: 1
+  branch: two

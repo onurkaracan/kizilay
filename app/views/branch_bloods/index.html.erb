@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Branch bloods</h1>
+
+<div id="branch_bloods">
+  <% @branch_bloods.each do |branch_blood| %>
+    <%= render branch_blood %>
+    <p>
+      <%= link_to "Show this branch blood", branch_blood %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New branch blood", new_branch_blood_path %>
