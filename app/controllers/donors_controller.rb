@@ -1,5 +1,6 @@
 class DonorsController < ApplicationController
   before_action :set_donor, only: %i[ show edit update destroy ]
+  skip_before_action :verify_authenticity_token
 
   # GET /donors or /donors.json
   def index
@@ -65,6 +66,6 @@ class DonorsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def donor_params
-      params.require(:donor).permit(:donor_name, :blood_type_id, :city_id, :town_id, :phone_number, :photo, :branch_id)
+      params.permit(:donor_name, :blood_type_id, :city_id, :town_id, :phone_number, :photo, :branch_id)
     end
 end

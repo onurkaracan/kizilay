@@ -1,5 +1,5 @@
 class BranchesController < ApplicationController
-  before_action :set_branch, only: %i[ show edit update destroy ]
+  before_action :set_branch, only: %i[ show edit update destroy update_branch_bloods]
 
   # GET /branches or /branches.json
   def index
@@ -45,6 +45,12 @@ class BranchesController < ApplicationController
         format.json { render json: @branch.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def update_branch_bloods
+
+    return format.json { render :show, status: :ok, location: @branch }
+
   end
 
   # DELETE /branches/1 or /branches/1.json

@@ -11,6 +11,10 @@
   </head>
 
   <body>
-    <%= yield %>
+  <div><%= link_to "Donor yonetim sayfası", new_donor_path %></div>
+    <div><%= link_to "add blood", new_donor_path %></div>
+      <div><%= link_to "request blood", new_donor_path %></div>
+        <div><%= link_to "giriş", new_donor_path %></div>
+          <%= yield %>
   </body>
 </html>
